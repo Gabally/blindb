@@ -1,0 +1,5 @@
+build
+**__pycache__**
+blindb.egg-info
+env
+sqli.py
