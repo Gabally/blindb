@@ -1,5 +1,5 @@
 # Blindb
-A python tool to automatically extract data from blind sql injections. Currently supports postgres and mysql.
+A python tool to automatically extract data from blind sql injections. Currently supports postgres, mysql and Microsoft SQL Server.
 Also uses multithreading and multiple processes to speed up the extraction.
 ## Install
 
@@ -16,7 +16,7 @@ to install the tool globally.
 
 - `---adapter` The python file containing the isTrue function, to execute the sql injection
 
-- `--dbms` The dbms system in use (mysql or postgres)
+- `--dbms` The dbms system in use (mysql, postgres or mssql)
 
 - `--output` The text file path where the database info will be written.
 

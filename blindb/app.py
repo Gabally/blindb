@@ -2,6 +2,7 @@ import argparse, os, sys
 from . import utils
 from .postgres import PostgreSQL
 from .mysql import MySQL
+from .mssql import MsSQL
 
 def main():
     print(utils.tColors.BOLD + utils.tColors.BLUE + f"""
@@ -15,10 +16,10 @@ def main():
     parser = argparse.ArgumentParser(
             prog='blindb',
             description='Exploit any blind sql injection to exfiltrate database data',
-            epilog='(Currently supports MySQL and Postgres)')
+            epilog='(Currently supports MySQL, Postgres, MSSQL)')
 
     parser.add_argument('--adapter', required = True)
-    parser.add_argument('--dbms', required = True, choices=['postgres', 'mysql'])
+    parser.add_argument('--dbms', required = True, choices=['postgres', 'mysql', 'mssql'])
     parser.add_argument('--output', required = True, help='A file name where the output will be saved')
     parser.add_argument('--tables-db', required = False, default=None, help='Local db file path. If present the tables data will be extracted and inserted in a sqlite db')
 
@@ -36,5 +37,7 @@ def main():
 
     if args.dbms == 'postgres':
         PostgreSQL(adapter.isTrue, args.output, args.tables_db).run()
+    elif args.dbms == 'mssql':
+        MsSQL(adapter.isTrue, args.output, args.tables_db).run()
     else:
         MySQL(adapter.isTrue, args.output, args.tables_db).run()
